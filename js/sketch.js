@@ -1,5 +1,5 @@
 'use strict';
-
+// DB url: https://console.firebase.google.com/u/2/project/social-c7c31/database/social-c7c31/data/~2F
 
 let nodeData; // object we will push to firebase
 let fbData;   // data we pull from firebase
@@ -20,16 +20,17 @@ function setup() {
     appId: "1:7276354307:web:002e05daba1c356d9be736"
   };
 
-  firebase.initializeApp(config);
-  database = firebase.database();
+
+firebase.initializeApp(config);
+
+database = firebase.database();
 
   // this references the folder you want your data to appear in
   let ref = database.ref(folderName);
   // **** folderName must be consistant across all calls to this folder
 
-  ref.on('value', gotdata, errData);
+ref.on('value', gotData, errData);
 
-  // DB url: https://console.firebase.google.com/u/2/project/social-c7c31/database/social-c7c31/data/~2F
 }
 
 function draw() {
