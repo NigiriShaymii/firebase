@@ -56,3 +56,7 @@ function updateNode(_nodeFolder, _nodeID, _updateObject) {
 function deleteNode(_nodeFolder, _nodeID) {
   firebase.database().ref(_nodeFolder + '/' + _nodeID).remove();
 }
+
+function seedDatabase(_array) {
+
+}
