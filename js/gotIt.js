@@ -12,6 +12,8 @@ function gotData(data) {
 
     // create an array of the post values (if you need to loop through it retaining order of entries)
     fbDataArray = Object.values(fbData);
+    console.log(fbDataArray);
+
   } else {
     console.log('nothing in this folder yet');
   }
@@ -30,7 +32,9 @@ function createNode(_nodeFolder, _nodeId, _nodeObject) {
   firebase.database().ref(_nodeFolder + '/' + _nodeId).set(_nodeObject);
 
   // call this function to create and seed the folder!
-  createNode(folderName, "seed", {text: "this is to seed folder"});
+
+  //  createNode(folderName, "seed", {text: "this is to seed folder"});
+
   // (to test you can just paste it into the web console)
 
 }
@@ -39,7 +43,7 @@ function createNode(_nodeFolder, _nodeId, _nodeObject) {
 // the update method will update an existing node
 
 function updateNode(_nodeFolder, _nodeID, _updateObject) {
-  firebase.database().ref(_nodeFolder + '/' + _nodeId).update(_updateObject);
+  firebase.database().ref(_nodeFolder + '/' + _nodeID).update(_updateObject);
   // this will update existing key:value pair(s) OR add new ones to your object
   // so your object might look like:
   // { existingKey: updatedKeyValue,

@@ -1,0 +1,4 @@
+let fortunes = [
+  "Hellp",
+  "Fortune",
+]
