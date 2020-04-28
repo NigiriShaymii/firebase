@@ -1,7 +1,9 @@
 'use strict';
 
 function gotData(data) {
-
+  //seed array (uncomment on first time initializing database only)
+  //seedDatabase(fortunes);
+  
   // need to retrieve firebase data with val() method
   // this returns an object of all data
   fbData = data.val();
@@ -57,6 +59,23 @@ function deleteNode(_nodeFolder, _nodeID) {
   firebase.database().ref(_nodeFolder + '/' + _nodeID).remove();
 }
 
-function seedDatabase(_array) {
+function seedDatabase(_array){
 
+  _array.forEach(function(item){
+
+  // First, assign timestamp for the messages
+  // We will use this both for the message ID and include it in the messages object itself
+  // *** this is a little redundant but helps when we update the message values
+  let timestamp = Date.now(); // milliseconds since midnight of January 1, 1970 (beginning of time ;)
+
+  // first, create object of messageData
+  nodeData = {
+    messageText: item,
+    timestamp: timestamp,
+    received: false,
+  }
+
+  // push to firebase!!!
+  createNode(folderName, timestamp, nodeData);
+  })
 }

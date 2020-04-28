@@ -5,7 +5,7 @@ let nodeData; // object we will push to firebase
 let fbData; // data we pull from firebase
 let fbDataArray; // firebase data values converted to an array
 let database; // reference to our firebase database
-let folderName = 'demo-messages'; // name of folder you created in db
+let folderName = 'messages'; // name of folder you created in db
 let messageInput;
 let sendMessageBtn;
 let receiveMessageBtn;
@@ -69,6 +69,7 @@ function sendMessage() {
     nodeData = {
       messageText: messageInput.value,
       timestamp: timestamp,
+      received: false,
     }
 
     // push to firebase!!!
@@ -100,9 +101,9 @@ function receiveMessage() {
     if (fbDataArray[i].received === false) {
       //console.log(`received: ${fbDataArray[i].messageText}`);
 
-      receivedMassage.innerHTML = fbDataArray[i].messageText;
+      receivedMessage.innerHTML = fbDataArray[i].messageText;
 
-      updateNode(folderName, fbDataArray[i].timestamp, {
+      createNode(folderName, fbDataArray[i].timestamp, {
         received: true
       });
 
@@ -118,6 +119,13 @@ function receiveMessage() {
 }
 
 function sendAgain() {
+
+  // reset receive div 
+  receivedMessage.innerHTML = ""; 
+  receiveMessageBtn.style.display = 'block'; 
+  sendAgainBtn.style.display = 'none';
+
+  // return to beginning
   receiveDiv.style.display = 'none';
   sendDiv.style.display = 'block';
 }
